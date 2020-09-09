@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: Bebas Neue;
+    src: url(fonts/BebasNeue-Regular.ttf);
+}
+@font-face {
+    font-family: Bebas Neue;
+    src: url(fonts/BebasNeue-Bold.ttf);
+    font-weight: bold;
+}
+
+body{
+    font-family: Bebas Neue;   
+}
+h1{
+    font-size: 60px;
+}
+a, p{
+    font-size: 24px;
+}
+
+h1, a, p{
+    margin: 15px auto;
+}

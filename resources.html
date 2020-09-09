@@ -1,0 +1,1698 @@
+<html><head>
+    <title>Algorithms Resources</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body bgcolor="#ffffff">
+    
+    <p align="right"><a href=        <link rel="stylesheet" href="main.css">
+        index.html">algo home</a></p> 
+    
+    <!-- <p align="right"><a href="2413index.html">2413 home</a></p> 
+    <p align="right"><a href="6033index.html">6033 home</a></p>
+    -->
+    
+    <font size="+1"> <center>
+    Resources for Algorithms<p>
+    <!-- Resources for Algorithms (CS 2413 and CS 6033)<p> -->
+    
+    
+    
+    </p><p>
+    
+    </p></center>
+    
+    <p>
+    </p><p></p><p><br>
+    This page does not  change much over time. It contains course notes and videos, as well as other useful information, organized by topic.
+    <br>
+    <br></p><hr>
+    <p></p><p>
+    
+    
+    <b>Course Topics</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (not necessarily in order of schedule)<br>
+    </p><ol>
+    <li><a href="#review">Things to review before starting this class</a><br> 
+    </li><li><a href="#bigO">big-O notation</a> <br> 
+    </li><li><a href="#recurrences">Recurrences</a> <br>
+    </li><li><a href="#sorting">Sorting</a><br>
+    </li><li><a href="#hash">Hashing</a> <br>
+    </li><li><a href="#selection">Deterministic Selection</a> (includes separate notes on partitioning) <br>
+    
+    </li><li><a href="#IRV">Indicator Random Variables</a>
+    <!--  (this is actually prerequisite material but I cover it because not all discrete math courses do; it is needed for Quicksort and Randomized Selection)<BR> -->
+    </li><li><a href="#rand">Quicksort and RandSelect</a><br>
+    </li><li><a href="#bst">Binary search trees</a><br>
+    </li><li><a href="#augmenting">Augmenting data structures</a><br>
+    </li><li><a href="#amor">Amortized Analysis</a><br>
+    
+    </li><li><a href="#dynprog">Dynamic programming</a><br>
+    </li><li><a href="#graphs">Graphs: intro, BFS, DFS, topological sort, SCC</a><br>
+    </li><li><a href="#mst">Minimum spanning trees</a><br>
+    </li><li><a href="#sssp">Single-source shortest paths</a><br>
+    </li><li><a href="#NP"> P vs NP</a><br>
+    
+    
+    
+    <!-- <li> <a href="#compress">Lossless compression, Huffman codes</a>  -->
+    </li></ol>
+    
+    <hr>
+    
+    <br>
+    <b>Informal summary PDF</b><br><br>
+    
+    This  <b>  <a href="../scribbles.pdf">PDF</a></b>   contains some brief informal descriptions of the course material.  It's useful if you're looking for a quick summary, but it  only  complements the class notes, it does not replace them.   If you spot any errors or particularly unclear descriptions, please let me know.
+    <!-- <br> Latest update of the PDF:  May 5, 3:00pm. -->
+    <br><br><hr>
+    <br>
+    
+    
+    <b>A note about videos</b><br><br>
+    For most topics, live lectures were recorded in the Fall 2016 and Spring 2017 semesters at Tufts University.  A couple were done in Spring 2018 at NYU.   Because of some minor audio issues in some of the lectures, and because I have refreshed the course notes, I have started  creating new videos. At first these will be voice-over presentations. Eventually they will be replaced with new recordings of live lectures.  Until then, the old videos will remain available. <br>
+     If you find a particular clip to be unclear, please let me know. <br>
+    
+    <br>
+    
+    If you want a supplemental video source, check out the 
+    <!--  
+    part of our course is closely related to the 2009 edition of the MIT course on algorithms.  
+    That class was taught by Charles Leiserson (the L in your CLRS textbook) and by one of my co-authors, Erik Demaine.
+     -->
+     MIT  open courseware video lectures for Intro to Algorithms, starring Charles Leiserson and Erik Demaine (from 2005).
+     This is entirely optional.  They cover a few things that we don't, and vice versa.
+     Here is the
+    <a href="
+    http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures"> link
+    </a> (which seems to have subtitles too).
+    You can also view or download the free videos (without subtitles) at the iTunes store by searching for "Introduction to Algorithms", or  
+    <a href="https://itunes.apple.com/ca/itunes-u/introduction-to-algorithms/id341597754?mt=10"> here</a>.
+    
+    
+    
+    <p><br></p><hr>
+    
+    
+    
+    <hr>
+    
+    <ol>
+    <a name="review"></a>
+    <li><b> Things to review before starting this class</b>
+        <ol>
+        <li>Discrete math
+            <ul>
+            <li> Common functions:	do a light review of pages 53-59 in CLRS.
+            
+            </li><li><a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html#series">Sum of the geometric series</a>. This is an 		important and useful property that many algorithms rely on. I will recap what matters when necessary.
+                <!-- (Zeno's paradox).  See p.1147 in CLRS.  And
+            <a href="http://www.xkcd.com/994"> xkcd 994</a> ... <a href="http://www.xkcd.com/1153"> xkcd 1153</a>  (don't 			forget to mouse-over) -->	
+            
+            </li><li>
+            <a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html#proof-contra">Proof by contrapositive and contradiction</a> 	
+                
+            </li><li>
+            <a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html#induction">Proof by induction</a>.  Really important.  Critical for section 3.1.
+                <ul>
+                <li>Also, see <a href="https://www.google.com/search?q=recursion">recursion</a>. 
+                </li></ul>
+            
+            </li><li> Basic properties about graphs and trees (e.g., vertex degree, number of leaves in a full tree) 
+        <!--   In particular, wherever random variables and expectation are required below, there is a 		warning note. -->
+            
+            
+            <!-- <li>
+             <a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html#probability-intro">Basic discrete probability</a>,
+                  enough that you will not be intimidated 
+                by indicator random variables, which will be covered in this course (see <a href="#IRV">section 16</a> on this page). 
+            -->	
+            </li></ul>
+            
+            
+        </li><li>Data structures
+            <ul>
+            <li>Arrays, linked lists, stacks, queues, heaps, binary search trees.  We will quickly recap the last two.
+                <ul>
+                <li>You should understand that you can't access an arbitrary item in a linked list in constant time, or run binary search.
+                </li><li>You should understand that you can't insert an element into the middle of an array in constant time.
+                </li></ul>
+            </li></ul>
+        </li><li>Basic probability
+            <ul>You should know what expected value is.  See <a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html#random-variables">here</a>. 
+        </ul></li></ol>	
+        
+    
+        
+    
+    
+    
+    <br><br>
+    <a name="bigO"></a>
+    </li><li><b> big-O notation (aka Theta notation) </b>
+        <ul>
+        <li>Prerequisite knowledge:  it helps to be familiar with common functions (see 1.1 above)
+        </li></ul>
+        <ul type="square">
+        <li> Class notes:
+            <ul>
+                                <!--
+                                <li>
+                            Old notes that correspond to video below: <a href="../classnotes/old-bigO.pdf">full slideshow</a>	
+                                        and <a href="../classnotes/old-bigO.short.pdf">condensed</a>
+                                --> 
+            
+            <li> Motivation example: Insertion sort. 	
+                <a href="../classnotes/sorting-insertionsort.pdf"> full 
+                                slideshow </a>		and 
+                <a href="../classnotes/sorting-insertionsort.short.pdf">condensed</a>
+            </li><li> Big-O. 
+                         <a href="../classnotes/big-O.pdf">full slideshow</a>	
+                                        and <a href="../classnotes/big-O.short.pdf">condensed</a> 
+            </li><li>My Discrete notes on big-O also contain slides and a video on what I call
+             <a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html#big-O">"exaggerate and simplify"</a>.
+                                    
+            </li></ul>
+        </li><li>Video 
+        <ul>	
+        <li><a href="https://stream.nyu.edu/media/Insertion-BigO_%28Source%29/1_tekqyr0s">My 2019 lecture</a> 
+        ...	<a href="https://stream.nyu.edu/media/00015_bigO_end_%28Source%29/1_422wlyv7">(conclusion of lecture)</a>		
+    
+        
+        <!--
+        <li><a href="https://stream.nyu.edu/media/Insertion-sort_and_intro_to_big-O_%28Source%29/1_21gg5g28
+    ">My slideshow with audio</a> on Insertion sort and justification of big-O. 
+        <li><a href="https://stream.nyu.edu/media/big-O.mov_%28Source%29/1_c9w1k99g
+    ">My slideshow with audio</a> on definition of big-O.
+            <li> <font color="red">New video on big-O to be filmed in Spring 2019. 
+             (Note: because of projector problems this will be delayed) </font>
+    -->
+    
+         <!--
+         <li>The first minutes of   <a href="https://ess.tusk.tufts.edu:8443/ess/echo/presentation/25dae60e-f0ba-4875-89a0-ed05e4534b06">Fall video 1</a> 	discuss big-O a bit further.   
+         -->
+             </li><li> MIT videos:   Lecture 2, up to 16:50.   <!-- little-o starts at 13:00 -->
+        </li></ul>	
+        </li><li> Book: chapter 2,   p.43-52.   (For insertion sort, p.16-29)
+        
+        </li></ul>
+                
+    
+    <br><br>
+    <a name="recurrences"></a>
+    </li><li><b> Recurrences </b>
+        <ol>
+        <li>The recursion tree.  Using induction.  
+            <ul>
+            <li> New class notes:
+            <a href="../classnotes/mergesort-recursion-tree-substitution.pdf"> full 
+            slideshow </a>
+            and 
+            <a href="../classnotes/mergesort-recursion-tree-substitution.short.pdf"> 
+            condensed </a>  (the beginning of these notes is about Mergesort)
+            
+            </li><li> New video: (slideshow with audio)
+                <a href="https://stream.nyu.edu/media/1_9nxoze2f">Mergesort intro</a>, and
+                <a href="https://stream.nyu.edu/media/1_zf48vmrj">Solving recurrences with a tree and by induction</a>.
+    
+            
+            </li><li> Old class notes:
+            <a href="../classnotes/old-mergesort-recursion-tree-substitution.pdf"> full 
+            slideshow </a>
+            and 
+            <a href="../classnotes/old-mergesort-recursion-tree-substitution.short.pdf"> 
+            condensed </a>  
+        
+            
+            </li><li>Old video on
+                solving recurrences with a tree and by induction: 
+                    <a href="https://stream.nyu.edu/media/Recurrences+1/1_xktyzufd
+    ">part 1</a>
+                    and <a href="https://stream.nyu.edu/media/Recurrences+2/1_5qcg6oca
+    ">part 2</a>. (in-class lecture, 45 min. total)
+                            
+            </li><li>  MIT videos: Lecture 2 from 16:50 to 37:45 for substitution, and then to 48:35 for recursion trees.
+                        
+        
+            </li><li> Book: chapter 4, p.83-92.   (Mergesort is in chapter 2, p.30-38)
+            </li></ul>
+    
+                        
+                    
+            
+            
+            
+        </li><li>The Master method
+            <ul>
+            <li>New class notes:
+                   <a href="../classnotes/master-method.pdf"> full slideshow </a> 	and 
+                    <a href="../classnotes/master-method.short.pdf"> 
+                        condensed </a>
+            </li><li> New video: 
+                <ul>
+                <li><a href="https://stream.nyu.edu/media/1_fegatd6f">Slideshow with audio</a>
+                </li><li><a href="https://stream.nyu.edu/media/1_sheu9rws">Extensions</a>.  Extended Case 2 is required, but the very last extension is just FYI.
+                </li></ul>
+            </li><li>Old class notes:
+                <a href="../classnotes/old.master-method.pdf"> full slideshow </a> 	and 
+                    <a href="../classnotes/old.master-method.short.pdf"> 
+                        condensed </a>
+            </li><li>Old video:
+                
+                
+                <!--Edited:--> <a href="https://stream.nyu.edu/media/Master_Method/1_pmlfaxpc">
+                My 2017 lecture</a>. (47min).   Note that it is titled "part 1", but in fact it is self-contained.  "Part 2" is just Strassen's algorithm, in section 3.3.d. 
+                <!-- Original:	
+                <a href="https://mediaspace.tufts.edu/media/t/1_2t1iy5o8">Lecture 4, part 1</a> and 
+                            <a href="https://mediaspace.tufts.edu/media/t/1_8vuqyo6v">part 2</a>. (55min. total, excluding Strassen).   Also, see a couple of observations
+                                <a href="errata-and-observations.html#lecture4">here</a>.
+                                
+                </ul>		-->		
+                <!-- 
+                <li>From Fall 2016: <a href="https://ess.tusk.tufts.edu:8443/ess/echo/presentation/5937b6f0-4994-484a-bb95-d2b35905452f"> Fall video 2</a>
+                                                 from 21:00 until 1:01:00
+                -->								 
+                </li><li>  MIT videos: Lecture 2 from 48:35 to end.  
+                
+            </li><li> Book:  chapter 4, p.93-96, although more intuition can be gained by reading up to p.99. 
+            </li><li>FYI: the <a href="http://en.wikipedia.org/wiki/Akra-Bazzi_method">Akra-Bazzi method</a> generalizes the master method. This is beyond the scope of this course.
+            </li></ul>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </li><li>Examples of using recurrences;  recursive algorithms. (Just browse, this is not exam material)
+            <ul type="square">
+            <li> Class notes for all of the below:
+                    <a href="../classnotes/recurrence-examples.pdf"> 				full slideshow </a> 	and 
+                <a href="../classnotes/recurrence-examples.short.pdf"> 
+                condensed </a> 
+            <!-- <li><a href="https://ess.tusk.tufts.edu:8443/ess/echo/presentation/5937b6f0-4994-484a-bb95-d2b35905452f">Fall video 2</a> from 44:00 (covers items a,b,c below). For the end of Fibonacci numbers, 
+            see
+            <a href="https://ess.tusk.tufts.edu:8443/ess/echo/presentation/50036bcf-30b9-4b86-a37e-b3bb08b8ebad">Fall video 4</a> from 1:06:00.
+            -->
+            </li></ul>
+            <ol type="a">
+            <li> Divide and conquer,  and binary search.
+                <ul>
+                <li>  MIT videos: Lecture 3  up to 13:00
+                </li><li>  Book:  chapter 4, p.65-67 
+                </li></ul>
+                
+            </li><li> Computing the power of a number
+                <ul>
+                <li>  MIT videos: Lecture 3 from 13:00 up to 17:40
+                </li></ul>
+                
+            </li><li> Computing Fibonacci numbers
+                <ul>
+                <li>  MIT videos: Lecture 3 from 17:40 to 33:45
+                </li><li><a href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibnat.html#Rabbits"> 
+                            Fibonacci rabbits</a>
+                </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/DPFib.html">Visualization</a>   by David Galles. (no logarithmic-time algo though)			
+                </li><li>	<a href="http://www.xkcd.com/289"> xkcd 289</a> ...
+                        <a href="http://www.xkcd.com/587"> xkcd 587</a> 
+                </li></ul>
+                
+            </li><li> Matrix multiplication (Strassen's method)
+                <ul>
+                <li><!--edited--> <a href="https://stream.nyu.edu/media/Strassen.mp4/1_dbvh7p7o">My 2017 lecture</a>.  (13min.)
+                </li><li>  MIT videos: Lecture 3 from 33:45 to 54:40
+                </li><li> Book:  chapter 4, p.75-82. 
+                </li></ul>
+                
+            </li><li> VLSI embedding
+                <ul>
+                <li>  MIT videos: Lecture 3 from 55:00 to end.
+                </li></ul>
+            </li></ol>
+        </li></ol>
+    
+    
+    
+    <br><br>
+    <a name="sorting"></a>
+    </li><li><b> Sorting</b>
+        <ol>
+        <li>Insertion sort  (used as motivation for big-O; see <a href="#bigO">section 2</a>) 
+            <ul>
+            <li>	MIT videos:   Lecture 1, 17:20 to 1:03:20.  
+            </li><li> Book: chapter 2,  	p.16-29 
+            </li></ul>
+            
+        </li><li>Merge sort   (used as motivation for studying recurrences; see <a href="#recurrences">section 3.1</a>) 
+            <ul>
+            <li>  MIT videos: Lecture 1, 1:03:20 to end.    
+    
+            </li><li> Book: chapter 2, p.30-38  	
+            </li></ul>
+        
+            
+        </li><li>Heap sort 
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/heapsort.pdf"> full slideshow </a>
+                and 	
+            <a href="../classnotes/heapsort.short.pdf">condensed </a>
+            
+                
+                </li><li>Video: <a href="https://stream.nyu.edu/media/Heap_Sort/1_arxy3z4t">My lecture<!--(edited)--></a>. (41min.)  
+                            <!-- Hopefully sound is better than the original version. 
+                 <li>Original video available upon request.
+                
+    Original:  All but the last 2 minutes of <a href="https://mediaspace.tufts.edu/media/t/1_y0dcnmcw">Lecture 6, part 1</a>. (49min.)
+                             Sound quality is not great at times.
+                             
+                </ul>			 
+                <li>Fall 2016: <a href="https://ess.tusk.tufts.edu:8443/ess/echo/presentation/1ee1190e-5b6d-4049-bddb-c22ec58f7e0b">Fall video 3</a>
+                 up to 45:00	
+                 -->		 
+            </li><li> Book: chapter 6
+            </li><li>  <a href="http://www.xkcd.com/835"> xkcd 835</a> 
+            <!--	<li> In today's recitation we went over some problems from the book, on Heapsort.  Here are some
+            <a href="../classnotes/recitation0923.pdf"> 
+            notes</a>.  There is a correction on the solution of the last problem solved, with the heap-like matrix.
+            -->
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/HeapSort.html">Visualization</a>  by David Galles.
+            </li></ul>	
+            
+    
+    
+    
+    
+                
+        </li><li> Decision trees.   Sorting lower bound. 
+            <ul>
+            <li> New class notes: 
+               <a href="../classnotes/sorting-lower-bound.pdf"> 
+                    full slideshow </a>
+                and 	
+               <a href="../classnotes/sorting-lower-bound.short.pdf"> 	condensed </a>
+    
+            </li><li> New video: <a href="https://stream.nyu.edu/media/1_9gmh9v0x">Slideshow with audio</a>
+                
+    
+    
+            </li><li> Old class notes: 
+               <a href="../classnotes/old.sorting-lower-bound.pdf"> 
+                    full slideshow </a>
+                and 	
+               <a href="../classnotes/old.sorting-lower-bound.short.pdf"> 	condensed </a>
+    
+            </li><li>Old video:
+                
+                    
+                    <a href="https://stream.nyu.edu/media/Sorting+lower+bound/1_tu7vrcxc">My 2017 lecture</a>. (22min.)
+                    
+                    
+                    <!-- <li>  MIT videos: Lecture 5, up to 31:20.   -->
+                
+            </li><li>  MIT videos: Lecture 5, up to 31:20.  
+    </li><li> Book: chapter 8, p.191-193
+            </li><li> Wiki on  <a href="http://en.wikipedia.org/wiki/Stirling's_approximation">
+            Stirling's approximation</a>
+            </li></ul>		
+            
+        <a name="sorting.radix"></a>	
+        
+        
+        </li><li> Counting sort and radix sort
+            <ul>
+            
+            <li> New class notes:
+                <a href="../classnotes/radix-counting-sort.pdf">
+                     full slideshow </a>	and 
+                <a href="../classnotes/radix-counting-sort.short.pdf"> 	condensed </a> 
+    
+            </li><li> Old video on Counting sort: <a href="https://stream.nyu.edu/media/1_1x2dqcmp">(2017 lecture)</a>
+            </li><li> New video on Radix sort: <a href="https://stream.nyu.edu/media/1_4drs0pw6">Slideshow with audio</a>
+    
+    
+    
+            <!-- <li> Old class notes:
+                <a href="../classnotes/old.radix-counting-sort.pdf">
+                     full slideshow </a>	and 
+                <a href="../classnotes/old.radix-counting-sort.short.pdf"> 	condensed </a> 
+            
+            
+            <li>
+            Old video: 
+                <ul>
+                
+                    <li><a href="https://stream.nyu.edu/media/Counting+sort+and_Radix+sort/1_wpun0ai0">My 2017 lecture</a>. (31 min.)
+                    
+                    
+            -->
+            </li><li>  MIT videos: Lecture 5, from 31:20 up to 1:04:00.
+                After that the video has a more detailed analysis of radix sort. 
+                 It is also in the book, but you are not required to cover this.
+    
+            </li><li> Book: chapter 8, p.194-199.
+            </li><li>Visualizations for 
+            <a href="https://www.cs.usfca.edu/~galles/visualization/CountingSort.html">Counting sort</a> and 
+            <a href="https://www.cs.usfca.edu/~galles/visualization/RadixSort.html">Radix sort</a>   by David Galles.
+            
+            </li></ul>	
+        
+        </li><li> Other
+            <ul>
+            <li> The <a href="https://www.youtube.com/watch?v=kPRA0W1kECg">sound of sorting</a>.
+            </li><li> Hopefully you'll remember sorting better than this when it matters: 
+                    <a href="http://www.xkcd.com/1185"> xkcd 1185</a> 
+            </li></ul>
+        </li><li>Quicksort is covered in <a href="#rand">section 8</a>.
+        
+        </li></ol>
+    
+    
+    
+    
+    <br><br>
+    <a name="hash"></a>
+    </li><li><b> Hashing </b> (basics) 
+        <ol>
+        <li>Recap of competing data structures, and introduction
+        <ul>
+            <li> New class notes:
+                <ul>
+                <li>Full slideshow: 
+                <a href="../classnotes/search-insert-delete.pdf">Competing data structures</a> 
+                and 
+                <a href="../classnotes/hashing-intro.pdf">Intro</a>
+                </li><li>
+                <a href="../classnotes/hashing-intro.short.pdf">Condensed</a> (and combined)
+                </li></ul>
+            </li><li> New video:
+                <ul>
+                <li><a href="https://stream.nyu.edu/media/1_7idmym6o">Competing data structures</a>
+                </li><li>Intro: <a href="https://stream.nyu.edu/media/1_k3bugl0r">Part 1</a> and 
+                <a href="https://stream.nyu.edu/media/1_f4x0no1b">Part 2</a>
+                </li></ul>
+            </li><li> Old class notes and video: contained in next section.
+            </li><li> Book:  chapter 11, p.253-255
+            </li></ul>
+        
+        
+        </li><li>Chaining
+            <ul>
+            <li> New class notes:
+                <a href="../classnotes/hashing-chaining.pdf"> full slideshow</a>
+                and 	<a href="../classnotes/hashing-chaining.short.pdf"> condensed</a> 
+            </li><li> New video: <a href="https://stream.nyu.edu/media/1_83tnkl66">Slideshow with audio</a>
+            </li><li> Old class notes:
+                <a href="../classnotes/old.hashing-part1.pdf"> full slideshow 					</a>
+                and 	<a href="../classnotes/old.hashing-part1.short.pdf"> 				condensed </a> 
+            </li><li>Old video:
+            <ul>	
+            <li><a href="https://stream.nyu.edu/media/hashing+1/1_yhsq4ag3">My 2016  lecture</a>  until 37:50 (continues with open addressing, see below).
+            <!-- <li>  MIT videos:   Lecture 7, up to 1:04:00 -->
+            </li></ul>
+            </li><li> Book:  chapter 11, p.256-259. 	Some analysis in the book will be skipped.
+            </li></ul>
+            
+            
+            
+        </li><li>  Open addressing, linear and quadrating probing, double hashing, analysis with uniform hashing assumption. 
+            <ul> 
+            <li> New class notes:
+                <a href="../classnotes/hashing-open-addressing.pdf"> 				full slideshow </a> and
+                <a href="../classnotes/hashing-open-addressing.short.pdf">					 condensed </a> 
+            </li><li> New video: <a href="https://stream.nyu.edu/media/1_fveq0h16">Slideshow with audio</a>
+    
+            </li><li> Old class notes:
+                <a href="../classnotes/old.analysis-open-addressing.pdf"> 				full slideshow </a> and
+                <a href="../classnotes/old.analysis-open-addressing.short.pdf">					 condensed </a> 
+             
+            </li><li> Old video:
+             <ul>
+             <li>My 2016 lecture, <a href="https://stream.nyu.edu/media/hashing+1/1_yhsq4ag3">part 1</a> starting from  37:50 (continuing from the section above), then
+            <a href="https://stream.nyu.edu/media/hashing+2/1_ri0ot4db">part 2</a>, then
+            <a href="https://stream.nyu.edu/media/hashing+3/1_qrht1yzr">part 3</a>. 
+            <!-- <li>  MIT videos:   Lecture 7, from 1:04:00 to end.  (if you're interested, see lecture 8 for more advanced material).    -->
+            </li></ul>
+            </li><li> Book:  Chapter 	11,  p.270-275. 
+            </li><li><a href="http://www.cs.tufts.edu/~ablumer/openhashing.html">JavaScript demo by Anselm Blumer</a>
+            </li></ul>
+        </li><li> Advanced further reading, not part of this course:  Universal hashing, Perfect hashing, Cuckoo hashing (and more about the 
+        <a href="http://www.iflscience.com/plants-and-animals/cuckoos-use-mafia-tactics-and-they-work">cuckoo mafia</a>)
+        </li></ol>
+    
+    
+    
+    
+                
+    
+    
+    <br><br>
+    <a name="selection"></a>
+    </li><li><b> Deterministic Selection </b>  (aka order statistics; median-finding)
+        <ol>
+        <li>Partitioning 
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/partition.pdf"> full slideshow</a>
+                and 	<a href="../classnotes/partition.short.pdf">condensed</a>		
+            </li><li>Video: <a href="https://stream.nyu.edu/media/1_7mlopyif">Slideshow with audio</a>
+                    
+            </li><li> Book:  Chapter 7, p.171-173, but a different method is used (see p.190). Focus on the course notes.
+            </li></ul>
+    
+        </li><li>Algorithm	
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/selection-deterministic.pdf"> full 				slideshow </a>
+            and 	<a href="../classnotes/selection-deterministic.short.pdf"> 			condensed </a>
+            </li><li>Video:
+                
+                <ul>
+                <li><!--Edited:-->My 2017 lecture: <a href="https://stream.nyu.edu/media/Deterministic+Selection+%28Part+1%29/1_xts2mnfa">part 1</a> and 
+                        <a href="https://stream.nyu.edu/media/Deterministic+Selection+%28Part+2%29/1_9xlsz74q">part 2</a>.  (49min.)
+                <!--
+                <li>Original:
+                <a href="https://mediaspace.tufts.edu/media/t/1_fkv6wwft">Lecture 5 part 1</a> and
+                <a href="https://mediaspace.tufts.edu/media/t/1_jkco25lb"</a>part 2</a>.  (73min.)  I made three small mistakes during the lecture. See
+                    <a href="errata-and-observations.html#lecture5">here</a>
+                    
+                </ul>	-->
+                <!--
+                <li>Fall 2016 <a href="https://ess.tusk.tufts.edu:8443/ess/echo/presentation/50036bcf-30b9-4b86-a37e-b3bb08b8ebad">Fall video 4</a> until 59:00.
+                -->
+                 </li><li>  MIT videos:  Lecture 6, from 43:30 to end. 
+                </li></ul>	
+    
+            </li><li> Book:  Chapter 9, p.220-222.   
+            </li><li> A
+            <a href="../chazelle-quote.txt">quote</a>  by 
+            <a href="https://www.cs.princeton.edu/~chazelle">Bernard Chazelle</a>.
+            <!--
+     In the world of algorithms, it is useful to distinguish among three types of recursion: binary search gives you the nonbranching kind; quicksort gives you the no-clone branching sort (no data replication); linear selection (median finding) gives you the cloning branching variety (with data replication). This last flavor is the tastiest of them all because it features two competing exponential growths (as in fractional cascading). Confession time: I've always had a weakness for linear selection and its sky-high coolness-to-simplicity ratio. I'll admit that RSA and FFT have enviable ratios, too, but both owe their sparkle to algebra whereas median finding is pure algorithmic sizzle. Just as Hume is said to have interrupted Kant's "dogmatic slumber," so linear selection interrupted the sorting snoozefest I once endured in Algorithms 101.
+            -->
+            </li></ul>
+            
+            
+            
+        
+            
+        </li></ol>
+    
+    
+    
+    
+    
+    
+    
+    
+    <br><br>
+    <a name="IRV"></a>
+    </li><li><b> Indicator Random Variables </b>
+        <ul type="square">
+        
+        <li> Class notes:
+        <a href="../classnotes/IRV.pdf"> full slideshow </a>
+            and 	<a href="../classnotes/IRV.short.pdf"> 				condensed </a>
+            
+        </li><li>Video: 
+         <ul>
+        <li> My 2019 lecture:
+        <a href="https://stream.nyu.edu/media/IRV_1_%28Source%29/1_pbhofiv1">part 1</a>, and 
+        <a href="https://stream.nyu.edu/media/IRV_2_%28Source%29/1_lup7l916">part 2</a>	
+        
+         </li><li> My 2016 lecture	
+        <a href="https://stream.nyu.edu/media/IRV+-+part+1/1_pkqsjm9l">part 1</a>, and 
+        <a href="https://stream.nyu.edu/media/Indicator+random+variables+%28IRV%29+-+part+2/1_ukljb0ce">part 2</a>	
+            </li></ul>
+            
+        </li><li> Book:  Chapter 5
+    
+        </li><li> Examples 
+            <ol>
+             <li> The hat check problem.
+                    <ul>
+                  
+               <!--     <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-spring-2005/lecture-notes/l21_prob_exp1.pdf">Link 
+    1</a> uses IRVs for an expected value calculation.
+                     Jump to page 8. -->
+                    <li> FYI - 
+                            <a href="http://notaboutapples.wordpress.com/2009/08/03/the-two-decks-of-cards-and-the-drunken-hat-check-girl/">
+                            Link 1</a> and
+                            <a href="http://standardwisdom.com/softwarejournal/2010/01/10-people-and-10-hats-an-old-problem/">link 2</a>                            calculate the probability 
+    of an outcome for this problem, without IRVs.
+                    </li></ul>
+            
+          </li><li> The hiring problem.
+                    <ul>
+                    <li> <a href="http://faculty.ycp.edu/~dbabcock/PastCourses/cs360/lectures/lecture10.html">Link</a>.
+                    Note that the second problem in this link, involving birthdays, is mentioned below.
+                    </li><li><a href="http://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">Harmonic series</a> (related to the hiring problem).
+                    </li></ul>
+    
+            
+            
+            </li><li> Finding local maxima in permutations.
+                    <ul>
+                    <li> Jump to the 30:00 mark in this <a href="https://www.youtube.com/watch?v=P1fSFvhPf7Q">youtube video</a>,
+                     which is part of Harvard's
+                            <a href="http://projects.iq.harvard.edu/stat110/youtube">Stat 110</a> course. This part of the lecture lasts 9 minutes.
+                            After that is an explanation of the <i>St. Petersburg paradox</i>  which is fun to think about.
+                             Here's the <a href="http://en.wikipedia.org/wiki/St._Petersburg_paradox">wiki</a> on that.
+                    </li></ul>
+       
+           </li><li> Counting inversions in permutations. (involves IRVs with 2 subscripts)
+                    <ul>
+                    <li> 
+                    Look at problem 2 in this
+                            <a href="http://www.csee.wvu.edu/~ksmani/courses/sp11/doa/qen/hw2sol.pdf">homework set</a>
+                     from a course at WVU.   This follows the hat check problem.    Problem 3 is not related to IRVs, but is  interesting. 
+                     </li></ul> 
+                    
+            </li><li> A birthday problem.  (involves IRVs with 2 subscripts)
+                    <ul>
+                    <li>The 2nd example in this
+                    <a href="http://faculty.ycp.edu/~dbabcock/PastCourses/cs360/lectures/lecture10.html">link</a>
+                    is a variant of our good old birthday problem.   I discuss this and one more variant
+                    <a href="http://research.engineering.nyu.edu/~greg/discrete/birthday-problem.html">here</a>.
+                    </li></ul>
+                    
+            </li><li> A problem with balls and bins.
+                    <ul>
+                    <li>See the second example in this <a href="http://mikespivey.wordpress.com/2011/12/01/indicator-variables/">link</a>.
+                    Evaluation of  the expected value of each IRV is a bit more complicated in this example than in previous ones.
+                    Note that the first example in this link is equivalent to the hat check problem.  It deals with <i>fixed points</i> in permutations.
+                    In a permutation of  the integers 1...n,  a fixed point occurs when integer k is placed at position k.
+                    </li></ul>
+                            
+                                                                
+            <!-- http://www.math.dartmouth.edu/~doyle/docs/treize/treize.pdf    some other time-->
+            
+            </li></ol>  <!-- end examples -->
+            
+    
+        
+        
+        </li></ul>  <!-- end primary list in IRV section -->
+    
+    
+    
+            
+        
+            
+    
+        
+    <br><br>
+    <a name="rand"></a>
+    </li><li><b>Quicksort and RandSelect</b>  
+        <ul>
+        <li type="circle">Prerequisite knowledge: <a href="#selection">Partitioning</a>, expected value.
+        For parts (b) and (c) of Quicksort, and the advanced derivation for RandSelect, you need to understand
+            <a href="#IRV">indicator random variables</a>.  	
+        </li></ul>
+        
+        <ol>
+        
+        
+    <li>Quicksort 
+            
+            
+            <ol type="a">
+            <li>Introduction and short derivation of expected runtime
+                <ul>
+                <li>New class notes:
+                    <a href="../classnotes/quicksort.pdf">full slideshow</a>
+                </li><li>New video:
+                    <a href="https://stream.nyu.edu/media/1_qs5vwyj5">Slideshow with audio</a>
+                
+                
+                </li><li> Old class notes: 
+                <a href="../classnotes/old.quicksort-intro.pdf"> full slideshow 			</a>
+                and 	
+                 <a href="../classnotes/old.quicksort-intro.short.pdf">condensed </a>
+                 
+                     </li><li>Old video: 
+                        <ul>
+                
+                    <li><a href="https://stream.nyu.edu/media/Quicksort_1_%28Source%29/1_a8dh94d0">My 2019 lecture</a> (30 minutes)
+                    
+                    </li><li><a href="https://stream.nyu.edu/media/Quicksort/1_eajsq0ua">My 2016  lecture</a> (first 16 minutes)
+                    
+                    
+                </li></ul>	
+                </li><li>  MIT videos: Lecture 4, up to 50:00
+                
+                </li><li> Book: chapter 7, p.170-180.
+                <!-- 			<li> Book: chapter 7, p.170-171, 175-176, 179.  Note that p.177-178 are just about intuition.
+     -->
+                </li><li> Hungarian folk dance Quicksort <a href="https://www.youtube.com/watch?v=ywWBy6J5gz8">video</a>.
+                </li></ul>
+                
+            
+            
+            
+                
+            </li><li>Analysis 1: expected runtime, with more detailed analysis
+                <ul>
+                <li> Class notes: 
+                    <a href="../classnotes/quicksort-analysis1.pdf"> 
+                        full slideshow </a>  and 	
+                   <a href="../classnotes/quicksort-analysis1.short.pdf"> 				condensed </a>
+                
+                 </li><li>Video:
+                 <ul>
+                 <li><a href="https://stream.nyu.edu/media/Quicksort_detailed_proof_1_%28Source%29/1_msnbi5i0">My 2019 lecture</a>
+                  (18 minutes)
+    
+                 <!--Edited:-->
+                 </li><li><a href="https://stream.nyu.edu/media/Quicksort/1_eajsq0ua">My 2016  lecture</a> (13 minutes long; begin after first 16 minute mark; continues  previous section)
+                 <!-- 
+                 <li>Original: <a href="https://mediaspace.tufts.edu/media/t/1_y1wzovp5">Fall video 7 part 2</a>  
+                 
+                 </ul>-->
+                 </li></ul>
+                </li><li> Book: chapter 7, p.181-184
+                </li></ul>
+        
+                
+                
+            </li><li>Analysis 2:  expected runtime via expected number of comparisons	
+                <ul>
+                <li> Class notes:  
+                        <a href="../classnotes/quicksort-analysis2.pdf">
+                         full slideshow </a>  and 	
+                            <a href="../classnotes/quicksort-analysis2.short.pdf"> 					condensed </a>
+                 </li><li>Video
+                     <ul>
+                    <li><a href="https://stream.nyu.edu/media/Quicksort_3_-_comparison_proof_%28Source%29/1_cqwzaszf">My 2019 lecture</a>
+                                  (21 minutes)
+    
+                    </li><li>		
+                         <!--Edited:--><a href="https://stream.nyu.edu/media/Quicksort+-+Alternate+analysis/1_3u59y6ik">My 2016 lecture</a> (18 minutes)
+                        <!--
+                         <li>Original: <a href="https://mediaspace.tufts.edu/media/t/1_28yznfm3">Fall video 8</a> until 18:40   
+                        
+                        </ul>-->
+                    </li><li>  MIT videos: Lecture 4, from 50:00 to end.
+                    </li></ul>
+                </li><li> Book: problem 7.3 on p.187
+                </li></ul>
+            </li></ol>		
+            
+            
+    
+    
+    
+        
+        
+        
+        </li><li>RandSelect (Randomized Selection)
+            
+            <ul>
+            <li> New class notes:
+            <a href="../classnotes/randselect.pdf"> full 				slideshow </a>
+            and 	<a href="../classnotes/randselect.short.pdf"> 			condensed </a>	
+            (without the long derivation)
+        
+        
+            </li><li>New video:
+                    <a href="https://stream.nyu.edu/media/1_l4qy1ohr">RandSelect part 1</a>,
+                    <a href="https://stream.nyu.edu/media/1_kpezhvne">RandSelect part 2</a>
+                     (without the long derivation)
+                     
+                     
+        
+            
+            </li><li> Old class notes:
+            <a href="../classnotes/old.selection-randomized.pdf"> full 				slideshow </a>
+            and 	<a href="../classnotes/old.selection-randomized.short.pdf"> 			condensed </a>	(also includes more detailed derivation, which you must study)	
+            </li><li>Old video:
+                            
+                    <!--Edited:--><a href="https://stream.nyu.edu/media/Randomized+Selection/1_105rkcv9">My 2016 lecture</a>. (also includes more detailed derivation)	
+    
+                    
+            
+            </li><li>  MIT videos:  Lecture 6, up to 43:30
+    
+            </li><li> Book:  Chapter 9, p.215-219.   The end of the analysis on p.219 may differ from what is done in class.
+            </li><li> How to generate 
+                a random number: <a href="http://www.xkcd.com/221"> xkcd 221</a>
+            </li></ul>	
+        
+        
+    </li></ol>
+    
+    
+    
+            
+            
+        
+            
+    
+    <br><br>
+    <a name="bst"></a>
+    </li><li><b> Binary search trees </b>
+        <ol>
+        
+        
+        <li>Basics
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/BST-basics.pdf">
+                         full slideshow </a>
+                and <a href="../classnotes/BST-basics.short.pdf"> 					condensed </a> 
+            </li><li>Video: 
+                <!--Edited:--><a href="https://stream.nyu.edu/media/BST+basics/1_2yn7zsjl">My 2016 lecture</a>. (16min)
+                <!--
+                <li>	<a href="https://mediaspace.tufts.edu/media/t/1_28yznfm3">Fall video 8</a> from 19:10 to 36:35
+                
+                </ul>-->
+            </li><li> Book:  Chapter 	12,  p.286-298. 
+            </li></ul>		
+                
+                
+                
+                
+                
+        </li><li>Building a  BST randomly, average depth, and relation to Quicksort.   
+            
+            <ul>
+            <li type="circle">Prerequisite knowledge:  Expected value. 
+            </li></ul>
+            
+            <ul>
+            <li> New class notes:
+                <a href="../classnotes/random-bst-time.pdf">
+                         full slideshow1 </a> (about time), 
+                <a href="../classnotes/random-bst-depth.pdf">
+                         full slideshow2 </a> (about height), 		 
+                and <a href="../classnotes/random-bst.short.pdf"> all notes condensed</a>. 
+    
+            </li><li>New video:  <a href="https://stream.nyu.edu/media/1_93n3ypgt">(about time)</a>, 
+             <a href="https://stream.nyu.edu/media/1_fx3yclaa">(about height)</a>
+    
+            
+            
+            </li><li> Old class notes:
+                <a href="../classnotes/old.BST-random-qsort.pdf">
+                         full slideshow </a>
+                and <a href="../classnotes/old.BST-random-qsort.short.pdf"> 					condensed</a>. 
+    
+    
+                    
+            </li><li>New video:
+            <a href="https://stream.nyu.edu/media/1_z0omiof4">1: Intro and expected time</a>.
+            <a href="https://stream.nyu.edu/media/1_fx3yclaa">2: Expected height</a>.  (Slideshow with audio)
+            
+            </li><li>Old video:
+                <ul>
+                <li><a href="https://stream.nyu.edu/media/Random_BST_%28Source%29/1_0vjmlpnj">My 2019 lecture</a>
+                 (28 minutes)
+    
+                </li><li><!--Edited:--><a href="https://stream.nyu.edu/media/Random+BST++basics/1_pgrl9bqg">My 2016 lecture</a>. (24min.)  [Note: since making this video I have added material to the end of the corresponding course notes. The quick analysis of expected height is not in this video.]
+    
+                    <!--
+                    <li>Original:	<a href="https://mediaspace.tufts.edu/media/t/1_28yznfm3">Fall video 8</a> from 36:35, and then
+            <a href="https://mediaspace.tufts.edu/media/t/1_rr101npy">Fall video 8 part 2</a>, and then
+            <a href="https://mediaspace.tufts.edu/media/t/1_l3haixu1">Fall video 8 part 3</a> until 5:55
+            -->		
+                    </li></ul>
+                </li><li>  MIT videos:  Lecture 9, up to 22:30. 
+                
+                </li><li> If you're interested in seeing the more complicated proof of why the expected height of a random BST is only 3<i>log</i>n, I can share course notes and a 40 minute video, just ask.  There is also a version in CLRS chapter 12.4, p.299-302, but it uses certain results without proving them.
+                </li></ul>
+                
+                
+            
+        </li><li>Red-black trees (an example of dynamic balanced BST)
+            <ul>
+            <li> New class notes:
+                <a href="../classnotes/red-black.pdf">full slideshow</a> 
+                <!-- and 
+                and 	<a href="../classnotes/red-black.short.pdf">condensed</a>   -->
+                
+            </li><li>New video:
+                <a href="https://stream.nyu.edu/media/1_bqeitjjj">Part 1</a>, 
+                <a href="https://stream.nyu.edu/media/1_pbsmzjta">Part 2</a> (Slideshow with audio)
+                <br>Alternate proof for height of Red-Black tree:
+                <a href="https://stream.nyu.edu/media/1_6ojt9phs">Slideshow with audio</a> (found in old class notes and video)
+            </li><li>
+                Old class notes: <a href="../classnotes/old.red-black.pdf"> full slideshow </a>
+                        and 	<a href="../classnotes/old.red-black.short.pdf"> 					condensed </a> 
+        
+        
+            <!-- 	<li> The condensed version of the old notes is also offered in this  <a href="../classnotes/red-black.short-(red-square-version).pdf"> 						version</a> where red nodes are shown as rectangles. 
+                     This ought to be more convenient for printing in black and white. 
+                    --> 
+        
+        
+            
+            </li><li>Old video:
+                
+                    <a href="https://stream.nyu.edu/media/Red-Black+trees+-+part+1/1_i4f5ks3v">part 1</a> and
+                            <a href="https://stream.nyu.edu/media/Red-Black+trees+-+part+2/1_q5r3yezp">part 2</a>. (2016 lecture, 76min. total)
+                            
+            </li><li>  MIT videos:  Lecture 10.
+                
+            </li><li> Book:  Chapter 13, p.308-322.   However, continuing to study the Delete operation would be great practice.		
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/RedBlack.html">Visualization</a>   by David Galles.
+            </li></ul>
+        
+    
+    
+    
+    
+    <!--
+    <li>Expected (max) depth of a randomly built BST.   (using convexity and linear combinations) 
+     (<b>will not be covered in 160. </b> Video will eventually appear on my comp150 page)
+            <ul>
+            <li type = "circle">Prerequisite knowledge: <a href="#IRV">indicator random variables</a>. 
+             
+            </ul>
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/BST-expected-depth.pdf">
+                         full slideshow </a>    and
+                 <a href="../classnotes/BST-expected-depth.short.pdf">  					condensed </a>
+            <li>  MIT videos:  Lecture 9, from 22:30 to end.
+            <li> Book:  Chapter 	12,  p.299-302. 
+            </ul>
+            
+    -->		
+        </li></ol>
+    
+    
+    <!-- 
+    <br><Br>
+    <a name="skiplists"></a>
+    <li><b> Skip lists </b>  (we will  not cover this in Fall 2015)
+        <ul>
+        <li>Prerequisite knowledge:   discrete probability (events, coin flipping; see 
+        <a href="http://research.engineering.nyu.edu/~greg/discrete/resources.html">SEE HERE</a>)
+        </ul>
+        <ul type = "square">
+        <li> Class notes: 
+        <a href="../classnotes/skiplists.pdf"> full slideshow </a>
+        and 	<a href="../classnotes/skiplists.short.pdf">condensed </a>
+        <li>  MIT videos:  Lecture 12
+        </ul>
+    -->
+    
+    
+    <br><br>
+    <a name="augmenting"></a>
+    </li><li><b> Augmenting data structures </b>
+        <ul>
+        <li>Prerequisite knowledge:   binary search trees (section 9)
+        </li></ul>
+        <ol>
+        <li>Intro, dynamic rank finding  and dynamic selection
+            <ul>
+            <li> New class notes: 
+                <a href="../classnotes/augmenting.pdf"> full slideshow </a>
+                and <a href="../classnotes/augmenting.short.pdf"> 					condensed </a>
+                    
+            </li><li>New video:  <a href="https://stream.nyu.edu/media/1_jecu538h">Slideshow with audio</a>
+            </li><li>Old video from 2016 lecture:	
+                <a href="https://stream.nyu.edu/media/Augmented+trees+Intro+%26+Rank+finding/1_br60tsme">Intro and rank-finding</a> (27min), 
+                <a href="https://stream.nyu.edu/media/Dynamic+Selection/1_kfd6kj9u">Dynamic Selection</a> (8min).
+                
+                
+                <!--
+                <li>Original 2016 <a href="https://mediaspace.tufts.edu/media/t/1_bn0s7f62">Fall video 10</a> (until 38:55).
+                -->
+                
+                
+            </li><li>  MIT videos:  Lecture 11, up to 36:00
+            
+            
+            </li><li> Book:  Chapter 	14, p.339-347.
+            </li></ul>
+            
+            
+            
+        </li><li>Range counting (almost the same as dynamic rank queries)
+            <ul>
+            <li> Class notes: 
+            <a href="../classnotes/range-counting.pdf"> full slideshow </a>
+                and <a href="../classnotes/range-counting.short.pdf"> 					condensed </a>
+                
+            </li><li>Video: <a href="https://stream.nyu.edu/media/Three+minutes+about+Range+Counting/1_2rf67cvy">3 minute explanation</a> from a warmup for high-dimensional range counting, which was done in a Tufts comp-150ALG lecture.
+            <!-- <li>  MIT videos:  N/A
+            <li> Book:  N/A  -->
+            </li></ul>	
+            
+        </li><li>Interval trees  
+            <ul>
+            <li> New class notes: <a href="../classnotes/interval-trees.pdf">full slideshow</a>
+            
+            </li><li>New video: <a href="https://stream.nyu.edu/media/1_hmuqk3lu">Slideshow with audio</a>
+            
+            
+            
+            </li><li> Old class notes: 
+                <a href="../classnotes/old.interval-trees.pdf"> full slideshow </a>
+                and <a href="../classnotes/old.interval-trees.short.pdf">condensed</a>.
+            
+            
+            
+            </li><li>Old video:
+             <a href="https://stream.nyu.edu/media/Interval+trees+-+part+1/1_6io1vl6p">part 1</a>, 
+                <a href="https://stream.nyu.edu/media/Interval+trees+-+part+2/1_4izg878x">part 2</a>	 (24min. total)	
+                
+            </li><li>  MIT videos:  Lecture 11, from 36:00 to end.
+    
+            </li><li> Book:  Chapter 	14, p.348-353.
+            </li></ul>
+        </li></ol>
+    
+    
+    
+    
+    
+    <br><br>
+    <a name="amor"></a>
+    </li><li><b> Amortized analysis </b>
+        <ul type="square">
+        <li> Class notes:
+            <ul>
+            <li>Multi-pop stack, and binary counter: 
+            <a href="../classnotes/amortization-multipop-and-counter.pdf">full slideshow</a>
+            and <a href="../classnotes/amortization-multipop-and-counter.short.pdf">condensed</a>
+            </li><li>Dynamic arrays (aka dynamic tables, aka array doubling) : 
+        <a href="../classnotes/amortization.pdf">full slideshow</a>
+            and 	<a href="../classnotes/amortization.short.pdf">condensed</a>. 
+            </li><li>FYI: Brief notes on <a href="../classnotes/applications-amortization.pdf">some other applications of amortized analysis</a>. 
+            </li></ul>
+        </li><li>
+        
+        
+        
+        
+            Video:
+        <ol>
+        <li> Intro
+            <ul>
+            <li><a href="https://stream.nyu.edu/media/00058+-+short+intro/1_hdn4mxv2">1-minute general intro</a>
+            </li></ul>
+        </li><li>Multipop	
+            <ul>
+            <li><a href="https://stream.nyu.edu/media/00058+-+8A24+-+10A30/1_0p8vtb10">Defining the multipop problem
+            </a>
+            </li><li><a href="https://stream.nyu.edu/media/00058+-+11A59-end/1_oxapltf7">Solving multipop with the accounting method</a> (continues from previous video, split was unavoidable)
+            </li><li><a href="https://stream.nyu.edu/media/00059+start-6A00/1_n2r6mozz">Recap of accounting method</a>
+            </li><li><a href="https://stream.nyu.edu/media/00059+-+7A34-end/1_qnrorwzl">Intro to potential method...</a>
+            </li><li><a href="https://stream.nyu.edu/media/00060+start-06A48/1_8ool9e14">...continuation of previous video, then solving multipop with the potential method</a>
+            </li></ul>
+        </li><li>Binary counter
+            <ul>	
+            <li><a href="https://stream.nyu.edu/media/00060+-+9A27-end/1_ixfy9zcy">Binary counter: definition, and solution with potential method</a>
+            </li><li><a href="https://stream.nyu.edu/media/00061+-+0A00-5A27/1_7ma97v57">....continuation of previous video </a> (auto-split of video files)
+            </li><li><a href="https://stream.nyu.edu/media/00061+-++7A38+-+11A00/1_z0x8yupk">Binary counter solved with accounting method</a>
+            </li><li><a href="https://stream.nyu.edu/media/00061+-+12A29-end/1_vbkbr3sy">Binary counter solved with aggregate method</a>	
+            </li></ul>	
+        
+        
+        
+        </li><li> Array doubling.
+        <ul>
+            <li><a href="https://stream.nyu.edu/media/Amortization+%28arrays%29+-+1/0_cgc0t64m">Intro and setting up aggregate method</a>
+            </li><li><a href="https://stream.nyu.edu/media/Amortization+%28arrays%29+-+2/0_q9jnjhlu">Aggregate method conclusion, and accounting method</a>
+            </li><li><a href="https://stream.nyu.edu/media/Amortization+%28arrays%29+-+3/0_j02n8s9b">Potential method</a>
+            <br>Note: at 13:15 I say "because we had to double", but that's wrong. The size was i-1 simply because we're in iteration i.  I was ahead of myself, thinking of  the new table size, which is handled right after.
+        </li></ul>
+        
+        </li><li> FYI: BB-alpha trees.
+        <ul>
+            <li><a href="https://stream.nyu.edu/media/Amortization+%28BB-alpha%29+-+1/0_khnz1pin">Intro</a>
+            </li><li><a href="https://stream.nyu.edu/media/Amortization+%28bb-alpha%29+-+2/0_5b96q0js">Potential method</a>
+        </li></ul>
+        
+        <!-- 
+        My unedited 2016 lecture on dynamic arrays, 
+             <a href="https://stream.nyu.edu/media/amortization+1/1_iyccdv36">part  1</a>, and
+        <a href="https://stream.nyu.edu/media/amortization+2/1_8erfqbpu">part 2</a>. I will be redoing this video on April 4.
+            -->
+            
+            
+            <!--
+            <li>Partially edited (sound improved, but content hasn't been edited yet) : 
+        <a href="https://mediaspace.tufts.edu/media/t/1_ra8nqapv">Part 1</a>, 
+        <a href="https://mediaspace.tufts.edu/media/t/1_0i3mlrbc">Part 2</a>
+            </ul> -->
+    
+    
+        
+        
+            </li><li>  MIT videos:  Lecture 13 (for array doubling).   Note that a different potential is used, compared to my class notes.
+            
+        </li></ol>
+        </li><li> Book:  Chapter 	17.
+        </li><li><a href="https://stream.nyu.edu/media/amortization+blooper/1_18c50xxe">Blooper</a> from a malfunctioning clicker during a Fall'16 review session.
+        
+        </li></ul>
+    
+    
+    
+    
+    
+    <br><br>
+    <a name="dynprog"></a>
+    </li><li><b> Dynamic programming </b>
+        <ol>
+        <li>Counting paths
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/dyn-prog-paths.pdf"> full slideshow </a>
+            and <a href="../classnotes/dyn-prog-paths.short.pdf"> 					condensed </a> 
+            </li><li>Video: <!-- edited -->
+            <a href="https://stream.nyu.edu/media/Counting+paths/1_wi3bf2kx">my 2016 lecture</a><a>. (29min).
+            <!--
+            <li>Original <a href="https://mediaspace.tufts.edu/media/t/1_ed4l3eqy">Fall video 11</a> until 31:35
+            -->
+            
+        </a></li></ul><a>
+            
+            
+            
+        </a></li><li><a>Longest common subsequence
+            </a><ul><a>
+            </a><li><a> Class notes:
+            </a><a href="../classnotes/dyn-prog-LCS.pdf"> full slideshow </a>
+            and <a href="../classnotes/dyn-prog-LCS.short.pdf"> 					condensed </a>
+            </li><li>Video: 
+             <ul>
+                 <li>My 2016 lecture, 
+                
+                    <!--Edited version:--> 
+                    <a href="https://stream.nyu.edu/media/Longest+Common+Subsequence+-+part+1/1_io2xmog0">part 1</a>, and
+                    <a href="https://stream.nyu.edu/media/Longest+Common+Subsequence+-+part+2/1_yaxe5bae">part 2</a>.  (42min total)  	
+                    <!--			
+            <li>Original material: <a href="https://mediaspace.tufts.edu/media/t/1_ed4l3eqy">Fall video 11</a> from 31:55, then
+            <a href="https://mediaspace.tufts.edu/media/t/1_fmna28fj">Fall video 11 part 2</a>, 
+            then
+            <a href="https://mediaspace.tufts.edu/media/t/1_6q0d05ad">Fall video 12 </a> until 3:40.
+                    </ul>
+                    -->
+                </li><li>  MIT videos:  Lecture  15. 
+                </li></ul>
+            </li><li> Book:  Chapter 	15,  p. 390-396.
+            </li><li>Demos:
+                <ul>
+                <li>
+                <a href="http://lcs-demo.sourceforge.net/">lcs-demo.sourceforge.net</a>
+                </li><li>
+                <a href="https://www.cs.usfca.edu/~galles/visualization/DPLCS.html">Visualization</a>   by David Galles.
+                </li></ul>
+            </li></ul>
+            
+            
+            
+        </li><li>Longest increasing subsequence
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/dyn-prog-LIS.pdf"> full slideshow </a>
+            and <a href="../classnotes/dyn-prog-LIS.short.pdf"> 					condensed </a>
+            </li><li>Video: <a href="https://stream.nyu.edu/media/Longest+Increasing+Subsequence/1_iv61yu2t">my 2016 lecture</a>. (31min)
+            </li></ul>	
+            
+        </li><li>Rod cutting
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/dyn-prog-rods.pdf"> full slideshow </a>
+            and <a href="../classnotes/dyn-prog-rods.short.pdf"> 					condensed </a>  
+            </li><li>
+            Video: my 2016 lecture, 
+            <a href="https://stream.nyu.edu/media/Rod+cutting+1/1_3jki39k6">part 1</a>, 
+            <a href="https://stream.nyu.edu/media/Rod+cutting+2/1_7nkckzl9">part 2</a>. (30min total)
+    
+            </li><li> Book:  Chapter 	15, p. 359-369.
+            </li></ul>	
+        <!-- <li>Edit distance	-->
+        </li></ol>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <br><br>
+    <a name="graphs"></a>
+    </li><li><b> Graphs: intro, BFS, DFS, topological sort, SCC </b>
+        <ol>
+        <li>Representation and types of graphs (and a little bit about planarity)
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/graph-basics.pdf"> full slideshow </a>
+            and <a href="../classnotes/graph-basics.short.pdf">condensed </a>
+            </li><li>Video
+            <ul><li>My 2016 lecture: <!-- edited -->
+                <ul>
+                <li><a href="https://stream.nyu.edu/media/Graphs+-+Intro/1_7ccv8xvk">Intro</a>
+                </li><li><a href="https://stream.nyu.edu/media/Graph+-+Planarity/1_v9p5hv1x">Planarity</a>
+                <!--
+                <li>Original content: <a href="https://mediaspace.tufts.edu/media/t/1_0ga15ko7">Fall video 14</a> until 31:30
+                -->
+                </li></ul>
+                </li><li>  MIT videos:  Lecture 16, up to 23:20.
+                </li></ul>
+            </li><li> Book:  Chapter 	22, p.589-592.  
+            </li></ul>	
+            
+            
+            
+        </li><li>Breadth-first search (BFS) and depth-first search (DFS)
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/BFS-DFS.pdf"> full slideshow </a>
+            and <a href="../classnotes/BFS-DFS.short.pdf">condensed </a>
+            
+            </li><li>Video: My 2016 lecture:	 <!-- edited -->
+                    <ul>
+                    <li><a href="https://stream.nyu.edu/media/Breadth+First+Search+%28BFS%29/1_7m1sn4gu">BFS</a>
+                    </li><li><a href="https://stream.nyu.edu/media/Depth+First+Search+%28DFS%29/1_g02wgevm">DFS</a>
+                    <!--
+                    <li>Original material:	
+            <a href="https://mediaspace.tufts.edu/media/t/1_0ga15ko7">Fall video 14</a> from 31:30, and then
+            <a href="https://mediaspace.tufts.edu/media/t/1_zgpcqayj">Fall video 14 part 2</a> for BFS.  
+            <a href="https://mediaspace.tufts.edu/media/t/1_rna4we17">Fall video 15</a> until 32:30 for DFS.
+            -->
+                    </li></ul>
+            </li><li> Book:  Chapter 	22, p.594-610.  
+                (Note, the book analyzes BFS and DFS more formally than I care for) 
+            </li><li>Visualizations for
+            <a href="https://www.cs.usfca.edu/~galles/visualization/BFS.html">BFS</a>
+                and
+            <a href="https://www.cs.usfca.edu/~galles/visualization/DFS.html">DFS</a>  by David Galles.
+                    </li><li> <a href="http://www.xkcd.com/761"> xkcd 761</a>
+        
+            </li></ul>
+            
+            
+        </li><li>Topological sort 
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/topological-sort.pdf"> 
+                    full slideshow </a>
+                and <a href="../classnotes/topological-sort.short.pdf"> 					condensed </a> 
+            </li><li>Video: 
+                <a href="https://stream.nyu.edu/media/Topological+sort/1_8giw6zeh">my 2016 lecture</a>
+                <!--
+                <li>Original material: <a href="https://mediaspace.tufts.edu/media/t/1_rna4we17">Fall video 15</a> from 32:30 until 56:35.	
+                </ul> -->
+            </li><li> Book:  Chapter 	22, p.612-614.  
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/TopoSortDFS.html">Visualization</a>  by David Galles.
+            </li></ul>
+            
+            
+        </li><li>Strongly connected components
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/components.pdf"> full slideshow </a>
+            and <a href="../classnotes/components.short.pdf">condensed </a> 		
+            </li><li>Video:
+                <ul>
+                <li><a href="https://stream.nyu.edu/media/Strongly+connected+components/1_fwdt3zf1">My 2017 lecture</a><!--edited-->
+                </li><li><a href="https://stream.nyu.edu/media/SCC+recap+1/1_4ctauuhe">Recap part 1</a><!-- (original content)-->
+                </li><li><a href="https://stream.nyu.edu/media/SCC+recap+2/1_glot1ba1">Recap part 2</a><!-- (edited version)-->
+                </li></ul>
+                <!-- 
+                
+            <li><a href="https://mediaspace.tufts.edu/media/t/1_rna4we17">Fall video 15</a> from 56:35, then
+            <a href="https://mediaspace.tufts.edu/media/t/1_np0av76q">Fall video 15 part 2</a>, then
+            <a href="https://mediaspace.tufts.edu/media/t/0_rvd9znki">Fall video 17</a>	until 46:50	
+            <li>Spring'17 recap video: 
+            <a href="https://mediaspace.tufts.edu/media/t/1_evwtbkga">part 1</a>,
+             <a href="https://mediaspace.tufts.edu/media/t/1_fwla0csn">part 2</a>.	 This covers the same as the Fall 2016  "Fall video 17",  from 32:50 and on.
+             -->
+            </li><li> Book:  Chapter 	22, p.615-620.  
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/ConnectedComponent.html">Visualization</a>
+              by David Galles.
+            </li></ul>
+        </li></ol>
+    
+    
+    
+    
+    <br><br>
+    <a name="mst"></a>
+    </li><li><b> Minimum spanning trees </b> 
+        <ul>
+        <li>Prerequisite knowledge:  graph basics,  familiarity with priority queues (e.g. heaps).
+        </li></ul>
+        <ol>
+        <li>Intro and properties
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/MST-intro.pdf"> full slideshow </a>
+            and 	<a href="../classnotes/MST-intro.short.pdf">condensed 			</a>
+            </li><li>Video:
+                <ul>
+                <li>My 2017 lecture: <a href="https://stream.nyu.edu/media/t/1_xja028et">Part 1</a>, and 
+                <a href="https://stream.nyu.edu/media/t/1_aswho84m">Part 2</a> (until 20:22, then Kruskal's algo begins)
+                </li><li>  MIT videos:  Lecture 16, from 23:20 up to 1:00:30. 
+                </li></ul>
+            </li><li> Book:  Chapter 23, p.624-629.
+            </li></ul>
+            
+            
+        </li><li>Kruskal's algorithm
+            <ul>
+            <li> Class notes:
+            <a href="../classnotes/MST-kruskal.pdf"> full slideshow </a>
+            and 	<a href="../classnotes/MST-kruskal.short.pdf"> 						condensed </a>  
+            </li><li>Video: <!--edited--><a href="https://stream.nyu.edu/media/t/1_aswho84m">My 2016 lecture</a> (starting at 20:22)		
+            </li><li> Book:  Chapter 23, p.631-633, and chapter 21 p.561-567 for union-find (disjoint set structure).
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/Kruskal.html">Visualization</a>  by David Galles.
+            </li><li><a href="http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/kruskal/KruskalApp.shtml?demo6">Javascript demo</a> by Kenji Ikeda.
+            </li></ul>
+            
+            
+        </li><li>Prim's algorithm
+            <ul type="circle">
+            <li>Prerequisite knowledge:  Familiarity with heaps as priority queues.
+            </li></ul>
+    <ul>
+            <li> Class notes:
+            <a href="../classnotes/MST-prim.pdf"> full slideshow </a>
+            and 	<a href="../classnotes/MST-prim.short.pdf"> 
+                        condensed </a> 
+            </li><li>Video:
+                <ul>
+                <li>My 2016 lecture, 	
+                <!-- Edited version: --><a href="https://stream.nyu.edu/media/Prim%27s+algorithm+-+part+1/1_ozme0ijp">part 1</a>  and 
+                <a href="https://stream.nyu.edu/media/Prim%27s+algorithm+-+part+2/1_47n3lq15">part 2</a>. You could stop at 8:14, but there is no harm in continuing.
+                <!--
+                <li>Original material: <a href="https://mediaspace.tufts.edu/media/t/0_rvd9znki">Fall video 17</a>	from 46:50, and
+            <a href="https://mediaspace.tufts.edu/media/t/1_lyfl9em5">Fall video 17 part 2</a>, and
+            <a href="https://mediaspace.tufts.edu/media/t/1_eims6by2">Fall video 18</a> until 18:25
+                </ul>
+                -->
+                </li><li>  MIT videos:  Lecture 16 from 1:00:30 to end.  
+                </li></ul>
+            </li><li> Book:  Chapter 23, p.634-636.
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/Prim.html">Visualization</a>   by David Galles.
+            </li><li><a href="http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/dijkstra/PrimApp.shtml?demo6">Javascript demo</a> by Kenji Ikeda.
+            </li></ul>	
+        </li></ol>
+    
+    
+    
+        
+    
+    
+    <br><br>
+    <a name="sssp"></a>
+    </li><li><b> Single source shortest paths </b> 
+        <ul>
+        <li>Prerequisite knowledge:  graph basics.
+        </li></ul>
+        <ol>
+        <li>General properties, relaxing edges.
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/SSSP-intro.pdf"> 
+                    full slideshow </a>
+                and 
+                <a href="../classnotes/SSSP-intro.short.pdf"> 
+                    condensed </a> 
+            </li><li>Video:
+            <ul>		
+            <li><a href="https://stream.nyu.edu/media/SSSP+-+Intro+and+Bellman-Ford+part+1/1_ab2jzj5q">My 2016 lecture</a> Up to 15:10
+            </li><li>  MIT videos: Lecture 17, up to 26:20. (more rigorous than what we will do). 
+            </li></ul>
+            </li><li> Book:   Chapter 24, p.643-650.
+            </li></ul>
+            
+            
+            
+            </li><li>Dijkstra's algorithm
+            <ul type="circle">
+            <li>Prerequisite knowledge:  Familiarity with heaps as priority queues.  
+            </li></ul>
+            <ul>
+            
+            
+                <li>New class notes, describing the algorithm without assuming knowledge of Prim:
+            <a href="../classnotes/Dijkstra.pdf"> 
+                full slideshow </a>
+                and 
+                <a href="../classnotes/Dijkstra.short.pdf"> 
+                condensed</a>.  
+                                    
+            </li><li>New video   <a href="https://stream.nyu.edu/media/1_0j9zq9zj">(Slideshow with audio)</a>
+    
+            
+            </li><li>Old class notes, assuming knowledge of Prim's MST algorithm:
+                <a href="../classnotes/old.Dijkstra.pdf"> 
+                full slideshow </a>
+                and 
+                <a href="../classnotes/old.Dijkstra.short.pdf"> 
+                condensed</a>.  
+            
+            
+            
+            </li><li>Old video: 
+            
+                 
+            <a href="https://stream.nyu.edu/media/Dijkstra%27s+algorithm/1_e3okgxrz">My 2016 lecture</a>. (7 minutes)   [The slide with the proof has been updated since this video was made. Specifically, the initial weights used in the video are inconsistent with the inductive hypothesis. The point is still made though.]
+                
+            <!-- 
+            <li>New video about algorithm (without proof), using old class notes: 
+            <a href="">(slideshow with audio)</a>
+            <font color="red"><b>(TO DO)</font></b>
+            -->
+            
+                
+            </li><li>  MIT videos:  Lecture 17, from 26:20 to 1:19:40. (the proof of correctness is far longer than what I require) 	
+        
+            </li><li> Book:  Chapter 	24, p.658-662.
+            </li><li><a href="https://www.cs.usfca.edu/~galles/visualization/Dijkstra.html">Visualization</a>   by David Galles.
+            </li><li><a href="http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/dijkstra/DijkstraApp.shtml?demo8">JavaScript demo</a> by Kenji Ikeda.
+    
+            </li></ul>
+    
+            
+            
+            
+            
+            </li><li>Bellman-Ford algorithm
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/Bellman-Ford.pdf"> full 				slideshow </a>
+                and 
+                     <a href="../classnotes/Bellman-Ford.short.pdf"> 			condensed </a>   
+            </li><li>Video:
+            <ul>         
+            <li><a href="https://stream.nyu.edu/media/SSSP+-+Intro+and+Bellman-Ford+part+1/1_ab2jzj5q">My 2016 lecture</a> from 15:10 for the main lemma, and from 24:30 for Bellman-Ford.  Then
+            <a href="https://stream.nyu.edu/media/Bellman-Ford+part+2/1_bjl5ybwr">part 2</a>. (30min total)
+            </li><li>  MIT videos: Lecture 18, up to 36:00. (more rigorous than what we will do). 
+            </li></ul>
+            </li><li> Book:   Chapter 24, p.651-654.
+            </li><li>	<a href="http://www.xkcd.com/69">  xkcd 69</a>
+            </li></ul>
+            
+            
+            
+        </li><li>Algorithm for DAGs
+            <ul type="circle">
+            <li>Note: the proof of correctness relies on the main lemma that comes before Bellman-Ford.
+            </li></ul>
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/SSSP-dag.pdf">
+                 full slideshow </a>
+                and 
+                     <a href="../classnotes/SSSP-dag.short.pdf"> 
+                     condensed </a> 
+               </li><li>Video: 
+                   <a href="https://stream.nyu.edu/media/SSSP+on+a+DAG/1_n5uuc9is">From my 2016 lecture</a>  (only 2 minutes)
+                 <!--
+                              <li>Original content: <a href="https://mediaspace.tufts.edu/media/t/1_1tmzk38y">Fall video 18 part 2</a> from 6:35 until 8:33
+                </ul>
+                -->
+            </li><li> Book:   Chapter 24, p.655-657.
+            </li></ul>
+            
+            
+            
+        </li></ol>
+    
+    
+    <!-- 
+    <BR><BR>
+    <a name="APSP"></a>
+    <li><b> All-pairs shortest paths</b> (just a taste)
+    <ul>
+        <li>Prerequisite knowledge:  single-source shortest paths.  
+        <li> Class notes:
+            <ul>
+        <li><a href="../classnotes/Johnson.pdf">Notes on Johnson's algorithm</a>.  
+        <li><a href="../classnotes/all-pairs.pdf">All notes</a>.  	
+              </ul>
+              
+    
+         <li>Video: 	
+        <ul>
+        <li>	<a href="https://mediaspace.tufts.edu/media/t/1_aa194fu3">My Tufts link</a> [55min, of which 15 for Johnson]
+            (See first 3 minutes for intro.  For Johnson's algorithm see 43 to end). 
+        </ul>	
+                !--
+        <li><a href="https://mediaspace.tufts.edu/media/t/1_1xjsb00l">Definition</a>, 
+        <a href="https://mediaspace.tufts.edu/media/t/1_225wib8g">Part 2</a>, 
+        <a href="https://mediaspace.tufts.edu/media/t/1_2lsx4yww">Part 3</a> [56min]
+        <li>In Part 2, around 31:00 I say "previous vertex" but mean "previous matrix".
+        --
+        <li> Book: Chapter 25 (in particular Johnson's algorithm is in 25.3)
+            
+            
+        <li>Links:
+            <ul>
+              <li>I like Jeff Erickson's 	<a href="http://jeffe.cs.illinois.edu/teaching/algorithms/notes/22-apsp.pdf">notes</a> on APSP.
+        <li><a href="https://en.wikipedia.org/wiki/Shortest_path_problem#All-pairs_shortest_paths">wiki</a> for the APSP problem.
+        <li>Floyd-Warshall algorithm <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">wiki</a>
+        <li>Johnson's algorithm <a href="https://en.wikipedia.org/wiki/Johnson%27s_algorithm">wiki</a>
+             </ul>
+    </ul>
+    
+    -->
+    
+    
+    <br><br>
+    <a name="NP"></a>
+    </li><li><b> P vs NP </b> 
+        <ol>
+        <li>Intro
+            <ul>
+            <li> Class notes:
+                <a href="../classnotes/NP-intro.pdf"> full slideshow </a>
+                and 
+                <a href="../classnotes/NP-intro.short.pdf"> 
+                condensed </a>  
+                
+            </li><li>Video: <a href="https://stream.nyu.edu/media/NP+-+part+1/1_7ace0nfx">My 2016 lecture</a>	 until 28:00, then continues with reductions.
+            </li><li> Book:  Chapter 34, p.1048-1053, and 1061-1069. 
+                 However, I  introduce the topic more informally, for instance, without mentioning "languages".
+            </li></ul>
+            
+            
+        </li><li>Examples of reductions
+            <!-- <ul type = "circle">
+             <li>Prerequisite knowledge:  none,  but I will use (and define) cliques and independent sets during an example.
+            </ul>  -->
+            <ul>	
+            <li> Class notes:
+                <a href="../classnotes/NP-reductions.pdf">
+                 full slideshow </a>
+                and 
+                <a href="../classnotes/NP-reductions.short.pdf"> 
+                condensed </a> 
+                
+                
+            </li><li>Video: My 2016 lecture <a href="https://stream.nyu.edu/media/NP+-+part+1/1_7ace0nfx">part 1</a> (starting	 from 28:00, i.e., continuing from above), then
+            <a href="https://stream.nyu.edu/media/t/1_corclo2w">part 2</a>
+        
+            </li><li> Book:  Chapter 	34, from p.1070 and on.  
+                     This goes into much more detail than I will.   Just browse through accordingly. 
+            </li></ul>
+            
+        </li><li>Other
+        <ul>	
+        <li>  Use your new-found knowledge to <a href="http://xkcd.com/287"> torment your friends</a>.
+        </li><li> Here are two papers about well-known video games that can be generalized to be really hard.
+            <a href="http://arxiv.org/pdf/1203.1895v1.pdf">__1__</a>	
+            <a href="http://arxiv.org/pdf/1201.4995v5.pdf">__2__</a>
+        </li><li>A brief, mostly non-mathematical,  introductory 
+        <a href="https://www.youtube.com/watch?v=YX40hbAHx3s">video about P vs NP</a>, shown to me by a former CS-2413 student.
+        </li></ul>	
+        </li></ol>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 
+    
+    <BR><BR>
+    <a name="compress"></a>
+    <li><b> Lossless compression</b> (including Huffman codes)
+        <ol>
+        <li> Class notes:  <a href="../classnotes/compression.pdf">compression.pdf</a> 
+        
+        <li>Video:  <a href="https://stream.nyu.edu/media/Huffman+edited.mp4/1_f4z17m9s">from Fall'18 lecture</a> (audio is mono)
+            
+        <li>Book: chapter 16.3	
+        
+        <li>Links
+            <ul>	
+            <li><a href="https://en.wikipedia.org/wiki/Huffman_coding">wiki</a>
+            <li>More details can be found in <i>Introduction to Data Compression</i>, by Khalid Sayood.  It's easy to 					find online. 
+            </ul>
+        </ol>
+    
+    -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--
+    
+    <li> Lecture 14: Monday October 21
+        <ul>
+        <li> Just reviewed.  
+        <li> 	<a href="http://www.cs.tufts.edu/comp/160-2013f/../classnotes/all-lectures-short-1.pdf"> annotated 
+    slides for lectures 1-6 </a>
+        <li> 
+        <a href="http://www.cs.tufts.edu/comp/160-2013f/../classnotes/all-lectures-short-2.pdf"> 
+    annotated slides for lectures 7-12 </a>
+        <li>
+        <a href="http://www.cs.tufts.edu/comp/160-2013f/../classnotes/AHS.zip"> annotated 
+    homework solutions </a> (.zip)
+        </ul>
+    <br>
+    
+    -->
+    
+    
+    
+    
+    
+    
+    
+    
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </li></ol></font></body></html>
